@@ -3,48 +3,39 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class FlipCoin {
-        /*
-         1. Flip Coin and print percentage of Heads and Tails
-            a. I/P -> The number of times to Flip Coin. Ensure it is a positive integer.
-            b. Logic -> Use Random Function to get value between 0 and 1. If < 0.5 then tails or heads
-            c. O/P -> Percentage of Head vs Tails
-         */
-        public static void main(String[] args) {
-            int n;
-            int headCount = 0;
-            int tailCount = 0;
-            float headPercent;
-            float tailPercent;
+    public static void main(String[] args) {
+        int heads = 0;
+        int tails = 0;
+        int count = 1;
+        double randomNumber = 0.0;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of flips ");
+        int flips = sc.nextInt();
 
-            FlipCoin coin = new FlipCoin();
-            Scanner scanner=new Scanner(System.in);
-
-            System.out.print("enter The number of times to Flip Coin \n n = ");
-            n=scanner.nextInt();
-            while (n<0){
-                System.out.println("enter positive integer");
-                n=scanner.nextInt();
+        while(count <= flips){
+            randomNumber = Math.random();
+            System.out.println(count + " " +randomNumber);
+            if(randomNumber < 0.5){
+                heads ++;
+                System.out.println("Heads");
             }
-            System.out.println("flipping coin "+n+" times");
-            for (int i = 0; i < n; i++) {
-                int result = coin.flipCoin();
-                if (result == 1) {
-                    headCount = headCount + 1;
-                } else {
-                    tailCount = tailCount + 1;
-                }
+            else{
+                tails++;
+                System.out.println("Tails");
             }
-            headPercent=((float) headCount*100/n);
-            tailPercent=((float) tailCount*100/n);
-
-            System.out.println("head count = "+headCount+ ", tail count = "+tailCount);
-            System.out.println("Percentage of Head = "+headPercent);
-            System.out.println("Percentage of Tail = "+tailPercent);
+            count++;
         }
+        System.out.println();
+        System.out.println("Number of Heads: " +heads);
+        System.out.println("Number of Tails: " +tails);
 
-        int flipCoin(){
-            Random random=new Random();
-            int result=random.nextInt(2);
-            return result;
-        }
+        double headpercent = (double) heads/flips*100;
+        double tailpercent = (double) tails/flips*100;
+
+        System.out.println("Percentage of Heads is " +headpercent);
+        System.out.println("Percentage of Tails is " +tailpercent);
+
+    }
+
 }
+
